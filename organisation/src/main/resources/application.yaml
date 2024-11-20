@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ORGANIZATION-SERVICE # Nom unique du service dans Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ # URL du serveur Eureka
+  instance:
+    prefer-ip-address: true # Utiliser l'IP au lieu du nom d'hôte
+# Port unique pour ce service

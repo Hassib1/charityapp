@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: PAYMENT-SERVICE # Nom unique du service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ # Adresse du serveur Eureka
+  instance:
+    prefer-ip-address: true
+ # Port unique pour ce service

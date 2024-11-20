@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+
+      routes:
+        - id: utilisateur-service
+          uri: lb://UTILISATEUR-SERVICE  # Load-balancer URI for USER-SERVICE
+          predicates:
+            - Path=/utilisateurs  # All paths starting with /users/ are routed to USER-SERVICE
+
+        - id: oraganisation-service
+          uri: lb://ORGANISATION-SERVICE  # Load-balancer URI for ORDER-SERVICE
+          predicates:
+            - Path=/organisation  # All paths starting with /orders/ are routed to ORDER-SERVICE
+
+
+        - id: donation-service
+          uri: lb://DONATION-SERVICE  # Load-balancer URI for ORDER-SERVICE
+          predicates:
+            - Path=/donations
+
+        - id: paiement-service
+          uri: lb://PAIEMENT-SERVICE  # Load-balancer URI for ORDER-SERVICE
+          predicates:
+             - Path=/paiements
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true # Dynamically map routes using service names
+    config:
+
+      enabled: false # Connect to Config Server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ # Connect to Eureka Server
+
+server:
+  port: 8085 # Port d'écoute de votre Gateway (changez-le si nécessaire)
+
